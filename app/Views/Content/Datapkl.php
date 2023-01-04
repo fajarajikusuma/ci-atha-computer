@@ -33,36 +33,48 @@
                             <?= session()->getFlashdata('pesan'); ?>
                         </div>
                     <?php endif; ?>
-                    <table class="table table-bordered mt-4">
-                        <thead class="table-success">
-                            <tr>
-                                <th>NO</th>
-                                <th>ID</th>
-                                <th>NAMA</th>
-                                <th>TANGGAL</th>
-                                <th>JAM</th>
-                                <th>KETERANGAN</th>
-                                <th>AKSI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1 + (10 * ($currentPage - 1)); ?>
-                            <?php foreach ($pkl as $d) { ?>
+                    <?php if (session()->getFlashdata('error')) : ?>
+                        <div class="alert alert-warning mb-3 mt-3" role="alert">
+                            <?= session()->getFlashdata('error'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <form action="/data/deleteSelectedData" method="POST">
+                        <table class="table table-bordered mt-4">
+                            <thead class="table-success">
                                 <tr>
-                                    <td><?= $i++; ?></td>
-                                    <td><?= $d['id_siswa'] ?></td>
-                                    <td><?= $d['nama_siswa'] ?></td>
-                                    <td><?= $d['tgl'] ?></td>
-                                    <td><?= $d['jam'] ?></td>
-                                    <td><?= $d['ket'] ?></td>
-                                    <td>
-                                        <a href="/data/hapus/<?= $d['id']; ?>" class="btn btn-danger" onclick="return confirm('Yakin akan di hapus?')">Hapus</a>
-                                        <a href="/data/edit/<?= $d['id']; ?>" class="btn btn-warning">Edit Data</a>
-                                    </td>
+                                    <th class="text-center">
+                                        <button class="btn btn-danger" type="submit" name="deleteData">Delete</button>
+                                    </th>
+                                    <th>NO</th>
+                                    <th>ID</th>
+                                    <th>NAMA</th>
+                                    <th>TANGGAL</th>
+                                    <th>JAM</th>
+                                    <th>KETERANGAN</th>
+                                    <th>AKSI</th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1 + (10 * ($currentPage - 1)); ?>
+                                <?php foreach ($pkl as $d) { ?>
+                                    <tr>
+                                        <td><input type="checkbox" name="id[]" value="<?= $d['id']; ?>" class="form-control"></td>
+                                        <td><?= $i++; ?></td>
+                                        <td><?= $d['id_siswa'] ?></td>
+                                        <td><?= $d['nama_siswa'] ?></td>
+                                        <td><?= $d['tgl'] ?></td>
+                                        <td><?= $d['jam'] ?></td>
+                                        <td><?= $d['ket'] ?></td>
+                                        <td>
+                                            <a href="/data/hapus/<?= $d['id']; ?>" class="btn btn-danger" onclick="return confirm('Yakin akan di hapus?')">Hapus</a>
+                                            <a href="/data/edit/<?= $d['id']; ?>" class="btn btn-warning">Edit Data</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </form>
+
                     <?= $pager->links('absensi', 'page'); ?>
                     <div class="col-2 mx-auto">
                         <a href="/data/reset" class="btn btn-danger form-control mb-5 mt-3" onclick="return confirm('Yakin semua data akan di reset?')">Reset</a>

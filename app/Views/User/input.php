@@ -73,7 +73,7 @@
                                 <div class="row mb-3">
                                     <div class="col">
                                         <label for="id" class="form-label">ID SISWA</label>
-                                        <input type="text" class="form-control" id="id" name="id" required placeholder="Masukan Id Siswa" minlength=6 maxlength=6 autocomplete="off" autofocus title="CONTOH ID SISWA YANG BENAR ADALAH 19-673">
+                                        <input type="text" class="form-control" id="id" name="id" required placeholder="Masukan Id Siswa" minlength=6 maxlength=6 autocomplete="off" autofocus title="CONTOH ID SISWA YANG BENAR ADALAH 19-673" pattern="^\d{2}-\d{3}$">
                                     </div>
                                     <div class="col-sm">
                                         <label for="id" class="form-label">NAMA SISWA</label>
@@ -83,13 +83,15 @@
                                 <div class="row mb-3">
                                     <div class="col-sm mx-auto">
                                         <label for="id" class="form-label">KETERANGAN</label>
-                                        <select class="form-control" name="ket" required>
-                                            <option selected disabled>Pilih Salah Satu</option>
-                                            <option>Hadir</option>
-                                            <option>Sakit</option>
-                                            <option>Ijin</option>
-                                            <option>Alpa</option>
+                                        <!-- create select with 4 option required -->
+                                        <select class="form-select" name="ket" required>
+                                            <option value="" selected disabled>Pilih Keterangan</option>
+                                            <option value="Hadir">Hadir</option>
+                                            <option value="Sakit">Sakit</option>
+                                            <option value="Izin">Izin</option>
+                                            <option value="Alfa">Alfa</option>
                                         </select>
+
                                     </div>
                                 </div>
                                 <div class="row">

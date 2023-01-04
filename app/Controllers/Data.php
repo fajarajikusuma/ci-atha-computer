@@ -102,4 +102,24 @@ class Data extends BaseController
         session()->setFlashdata('pesan', "Data Anda Telah Di Hapus Semua");
         return redirect()->to('/data');
     }
+
+    public function deleteSelectedData()
+    {
+        if (isset($_POST['deleteData'])) {
+            if (!empty($this->request->getVar('id'))) {
+                $datapkl = new \App\Models\AbsensiModel();
+                //get data nama from database
+                $id = $datapkl->select('nama_siswa')->whereIn('id', $this->request->getVar('id'))->findAll();
+                // dd($id);
+                //array to string
+                $id = implode(", ", array_column($id, 'nama_siswa'));
+                $datapkl->delete($this->request->getVar('id'));
+                session()->setFlashdata('pesan', "Data <b>$id</b> Telah Di Hapus");
+                return redirect()->to('/data');
+            } else {
+                session()->setFlashdata('error', "Tidak Ada Data Yang Dipilih");
+                return redirect()->to('/data');
+            }
+        }
+    }
 }

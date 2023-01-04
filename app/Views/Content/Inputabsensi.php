@@ -39,7 +39,7 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="id" class="form-label text-white">ID SISWA</label>
-                                <input type="text" class="form-control" id="id" name="id" required placeholder="Masukan Id Siswa" minlength="6" maxlength="6">
+                                <input type="text" class="form-control" id="id" name="id" required placeholder="Masukan Id Siswa" minlength="6" maxlength="6" pattern="^\d{2}-\d{3}$">
                             </div>
                         </div>
                         <div class="row mb-3">
