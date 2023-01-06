@@ -412,7 +412,34 @@
             });
         });
     </script>
+    <script>
+        document.getElementById('nama').addEventListener('input', function(event) {
+            event.target.value = event.target.value.toUpperCase();
+        });
 
+        document.getElementById('sekolah').addEventListener('input', function(event) {
+            event.target.value = event.target.value.toUpperCase();
+        });
+
+        function updateClock() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+
+            var clock = document.getElementById('jam');
+            clock.value = hours + ":" + minutes + ":" + seconds;
+        }
+
+        setInterval(updateClock, 1000);
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>

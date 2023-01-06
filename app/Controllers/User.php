@@ -26,7 +26,8 @@ class User extends BaseController
             'nama_siswa' => $this->request->getVar('nama'),
             'tgl' => $this->request->getVar('tgl'),
             'jam' => $this->request->getVar('jam'),
-            'ket' => $this->request->getVar('ket')
+            'ket' => $this->request->getVar('ket'),
+            'sekolah' => $this->request->getVar('sekolah')
         ];
         $cek = array('id_siswa' => $id, 'tgl' => $tgl);
         $sql = $datapkl->where($cek)->first();

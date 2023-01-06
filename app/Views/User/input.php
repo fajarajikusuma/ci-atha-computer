@@ -64,7 +64,7 @@
                                             <input type="date" class="form-control mb-3" name="tgl" value="<?= date('Y-m-d'); ?>" readonly required>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
-                                            <input type="time" class="form-control" name="jam" value="<?= date('H:i:s'); ?>" readonly required>
+                                            <input type="time" id="jam" class="form-control" name="jam" value="updateClock()" readonly required>
                                         </div>
                                     </div>
                             </div>
@@ -75,23 +75,26 @@
                                         <label for="id" class="form-label">ID SISWA</label>
                                         <input type="text" class="form-control" id="id" name="id" required placeholder="Masukan Id Siswa" minlength=6 maxlength=6 autocomplete="off" autofocus title="CONTOH ID SISWA YANG BENAR ADALAH 19-673" pattern="^\d{2}-\d{3}$">
                                     </div>
-                                    <div class="col-sm">
+                                    <div class="col">
                                         <label for="id" class="form-label">NAMA SISWA</label>
-                                        <input type="text" class="form-control" id="id" name="nama" required placeholder="Masukan Nama Siswa" autocomplete="off">
+                                        <input type="text" class="form-control" id="nama" name="nama" required placeholder="Masukan Nama Siswa" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-sm mx-auto">
+                                    <div class="col mx-auto">
                                         <label for="id" class="form-label">KETERANGAN</label>
                                         <!-- create select with 4 option required -->
                                         <select class="form-select" name="ket" required>
                                             <option value="" selected disabled>Pilih Keterangan</option>
                                             <option value="Hadir">Hadir</option>
                                             <option value="Sakit">Sakit</option>
-                                            <option value="Izin">Izin</option>
-                                            <option value="Alfa">Alfa</option>
+                                            <option value="Ijin">Ijin</option>
+                                            <option value="Alpa">Alpa</option>
                                         </select>
-
+                                    </div><br>
+                                    <div class="col">
+                                        <label for="sekolah" class="form-label">SEKOLAH</label>
+                                        <input type="text" class="form-control" id="sekolah" name="sekolah" required placeholder="Masukan Sekolah Siswa" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -125,6 +128,7 @@
                                                     <th>NO</th>
                                                     <th>ID</th>
                                                     <th>NAMA</th>
+                                                    <th>SEKOLAH</th>
                                                     <th>TANGGAL</th>
                                                     <th>JAM</th>
                                                     <th>KETERANGAN</th>
@@ -137,6 +141,7 @@
                                                         <td><?= $i++; ?></td>
                                                         <td><?= $d['id_siswa'] ?></td>
                                                         <td><?= $d['nama_siswa'] ?></td>
+                                                        <td><?= $d['sekolah'] ?></td>
                                                         <td><?= $d['tgl'] ?></td>
                                                         <td><?= $d['jam'] ?></td>
                                                         <td><?= $d['ket'] ?></td>
@@ -153,7 +158,33 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('nama').addEventListener('input', function(event) {
+            event.target.value = event.target.value.toUpperCase();
+        });
+        document.getElementById('sekolah').addEventListener('input', function(event) {
+            event.target.value = event.target.value.toUpperCase();
+        });
 
+        function updateClock() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+
+            var clock = document.getElementById('jam');
+            clock.value = hours + ":" + minutes + ":" + seconds;
+        }
+
+        setInterval(updateClock, 1000);
+    </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

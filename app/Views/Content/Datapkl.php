@@ -11,7 +11,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-12 col-md-4 col-lg-6" style="margin-top: 50px;">
+        <!-- <div class="col-sm-12 col-md-4 col-lg-6" style="margin-top: 50px;">
             <form action="" method="POST">
                 <button class="btn btn-info ml-3" type="submit" name="submit" style="float: right;">OK</button>
                 <select type="submit" class="col-md-6 col-lg-2 col-sm-6 form-control" name="show" required style="float: right;">
@@ -22,7 +22,7 @@
                 </select>
                 <label class="col-form-label mr-3" style="float: right;">Show</label>
             </form>
-        </div>
+        </div> -->
     </div>
     <div class="row">
         <div class="col">
@@ -48,6 +48,7 @@
                                     <th>NO</th>
                                     <th>ID</th>
                                     <th>NAMA</th>
+                                    <th>SEKOLAH</th>
                                     <th>TANGGAL</th>
                                     <th>JAM</th>
                                     <th>KETERANGAN</th>
@@ -62,6 +63,7 @@
                                         <td><?= $i++; ?></td>
                                         <td><?= $d['id_siswa'] ?></td>
                                         <td><?= $d['nama_siswa'] ?></td>
+                                        <td><?= $d['sekolah'] ?></td>
                                         <td><?= $d['tgl'] ?></td>
                                         <td><?= $d['jam'] ?></td>
                                         <td><?= $d['ket'] ?></td>
@@ -75,7 +77,7 @@
                         </table>
                     </form>
 
-                    <?= $pager->links('absensi', 'page'); ?>
+
                     <div class="col-2 mx-auto">
                         <a href="/data/reset" class="btn btn-danger form-control mb-5 mt-3" onclick="return confirm('Yakin semua data akan di reset?')">Reset</a>
                     </div>

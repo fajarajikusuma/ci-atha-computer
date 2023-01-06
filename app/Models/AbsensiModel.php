@@ -14,7 +14,7 @@ class AbsensiModel extends Model
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['no', 'id_siswa', 'nama_siswa', 'tgl', 'jam', 'ket'];
+    protected $allowedFields        = ['no', 'id_siswa', 'nama_siswa', 'tgl', 'jam', 'ket', 'sekolah'];
 
     // Dates
     protected $useTimestamps        = false;

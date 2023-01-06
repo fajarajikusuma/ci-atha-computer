@@ -2,7 +2,7 @@
 <?= $this->section('content'); ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-8 col-md-12 col-sm-12">
+        <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card bg-secondary mt-3">
                 <div class="container-fluid">
                     <div class="row">
@@ -10,13 +10,15 @@
                             <h3 class="text-white mt-3">Ubah Absensi Prakerin</h3>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
-                            <div class="col-lg-8 col-md-12 col-sm-12 mx-auto mt-3">
+                            <div class="col-lg-8 col-md-12 col-sm-12 mt-3" style="float: right;">
                                 <form action="/data/editSimpan/<?= $absen['id']; ?>" method="POST">
-                                    <div class="row ms-auto">
-                                        <label class="col-form-label text-white">Tanggal :</label>
-                                        <div class="col-lg-8 col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
                                             <?php date_default_timezone_set('Asia/Jakarta'); ?>
                                             <input type="date" class="form-control" name="tgl" value="<?= date('Y-m-d'); ?>">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <input type="time" id="jam" class="form-control" name="jam" value="<?= $absen['jam'] ?>" required>
                                         </div>
                                     </div>
                             </div>
@@ -31,7 +33,13 @@
                     <div class="row mb-3">
                         <label for="colFormLabel" class="col-sm-2 col-form-label text-white">NAMA SISWA</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nama" value="<?= $absen['nama_siswa']; ?>" required>
+                            <input type="text" class="form-control" name="nama" id="nama" value="<?= $absen['nama_siswa']; ?>" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label text-white">SEKOLAH</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="sekolah" id="sekolah" value="<?= $absen['sekolah']; ?>" required>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -67,4 +75,5 @@
         </div>
     </div>
 </div>
+
 <?= $this->endSection(); ?>

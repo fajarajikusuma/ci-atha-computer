@@ -20,7 +20,9 @@ class Data extends BaseController
         $data = [
             'title' => 'Daftar Absensi',
             //'show' => $showdata,
-            'pkl' => $tmp->paginate(10, 'absensi'),
+            // 'pkl' => $tmp->paginate('absensi'),
+            // show all data
+            'pkl' => $tmp->findAll(),
             'pager' => $datapkl->pager,
             'currentPage' => $currentPage
         ];
@@ -45,7 +47,8 @@ class Data extends BaseController
             'nama_siswa' => $this->request->getVar('nama'),
             'tgl' => $this->request->getVar('tgl'),
             'jam' => $this->request->getVar('jam'),
-            'ket' => $this->request->getVar('ket')
+            'ket' => $this->request->getVar('ket'),
+            'sekolah' => $this->request->getVar('sekolah')
         ];
         $cek = array('id_siswa' => $id, 'tgl' => $tgl);
         $sql = $datapkl->where($cek)->first();
@@ -80,7 +83,8 @@ class Data extends BaseController
             'id_siswa' => $this->request->getVar('id'),
             'nama_siswa' => $this->request->getVar('nama'),
             'tgl' => $this->request->getVar('tgl'),
-            'ket' => $this->request->getVar('ket')
+            'ket' => $this->request->getVar('ket'),
+            'sekolah' => $this->request->getVar('sekolah')
         ]);
         return redirect()->to('/data');
     }
@@ -108,10 +112,7 @@ class Data extends BaseController
         if (isset($_POST['deleteData'])) {
             if (!empty($this->request->getVar('id'))) {
                 $datapkl = new \App\Models\AbsensiModel();
-                //get data nama from database
                 $id = $datapkl->select('nama_siswa')->whereIn('id', $this->request->getVar('id'))->findAll();
-                // dd($id);
-                //array to string
                 $id = implode(", ", array_column($id, 'nama_siswa'));
                 $datapkl->delete($this->request->getVar('id'));
                 session()->setFlashdata('pesan', "Data <b>$id</b> Telah Di Hapus");
